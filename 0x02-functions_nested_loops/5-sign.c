@@ -1,3 +1,5 @@
+#include "holberton.h"
+
 /**
  * print_sign - checks if a char is alpha or not
  *
