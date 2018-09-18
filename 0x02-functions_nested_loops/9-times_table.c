@@ -1,6 +1,6 @@
 #include "holberton.h"
 /**
- * times_table prints out 0..9 times table
+ * times_table - prints out 0..9 times table
  *
  * Return: always void
  */
@@ -15,12 +15,12 @@ void times_table(void)
 	{
 		n = 0;
 		lineTotal = 0;
-		while (n < 11)
+		while (n < 10)
 		{
 			lineTotal = n * i;
 
 			pOnes = lineTotal % 10; /* grab last digit */
-			pTens = (lineTotal - pOnes) / 10; 
+			pTens = (lineTotal - pOnes) / 10;
 			/* ^^grab first digit of two digit number^^ */
 			if (pTens == 0 && n > 0)
 				_putchar(' ');
