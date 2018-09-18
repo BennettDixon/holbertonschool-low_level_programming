@@ -27,7 +27,7 @@ void times_table(void)
 			else if (n > 0)
 				_putchar(pTens + '0');
 			_putchar(pOnes + '0');
-			if (n == 10)
+			if (n == 9)
 				break;
 			_putchar(',');
 			_putchar(' ');
