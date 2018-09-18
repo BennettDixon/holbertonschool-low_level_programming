@@ -15,7 +15,7 @@ void jack_bauer(void)
 		while (hourOnes <= 9)
 		{
 			if (hourOnes > 3 && hourTens == 2)
-				break; 
+				break;
 			minutesTens = 0;
 			while (minutesTens <= 5)
 			{
