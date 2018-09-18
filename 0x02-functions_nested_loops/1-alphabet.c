@@ -1,5 +1,8 @@
-void print_alphabet(void);
-
+/**
+ * print_alphabet - print alphabet out
+ * 
+ * Return: void 
+ */
 void print_alphabet(void)
 {
 	int ch = 'a';
