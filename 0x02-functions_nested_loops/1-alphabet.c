@@ -1,7 +1,8 @@
+#include "holberton.h"
 /**
  * print_alphabet - print alphabet out
- * 
- * Return: void 
+ *
+ * Return: void
  */
 void print_alphabet(void)
 {
@@ -9,7 +10,7 @@ void print_alphabet(void)
 
 	while (ch <= 'z')
 	{
-		putchar(ch++);
+		_putchar(ch++);
 	}
-	putchar('\n');
+	_putchar('\n');
 }
