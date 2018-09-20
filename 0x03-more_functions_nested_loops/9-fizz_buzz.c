@@ -7,20 +7,6 @@ void fizz_buzz(void);
  */
 int main(void)
 {
-	fizz_buzz();
-	return (0);
-}
-
-/**
- * fizz_buzz - print 0..99, more info in Desc
- *
- * Description: if multiple of 3 print fizz
- * if multiple of 5 print buzz, if both print FizzBuzz
- *
- * Return: always void
- */
-void fizz_buzz(void)
-{
 	int i;
 
 	i = 1;
@@ -34,8 +20,11 @@ void fizz_buzz(void)
 			printf("Buzz");
 		else
 			printf("%d", i);
+		if (i == 100)
+			break;
 		putchar(' ');
 		i++;
 	}
 	putchar('\n');
+	return (0);
 }
