@@ -1,6 +1,6 @@
 #include "holberton.h"
 /**
- * print_numbers - print numbers 0..9\n
+ * print_most_numbers - print numbers 0..9\n
  *
  * Description: skips 2 & 4
  *
