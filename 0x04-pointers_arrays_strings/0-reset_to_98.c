@@ -1,7 +1,7 @@
 /**
  * reset_to_98 - updates pointer's value to 98
  *
- * @*n: integer pointer to update
+ * @n: integer pointer to update
  *
  * Return: always void
  */
