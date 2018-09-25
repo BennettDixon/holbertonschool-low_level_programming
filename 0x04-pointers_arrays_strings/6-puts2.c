@@ -8,9 +8,11 @@
  */
 void puts2(char *str)
 {
+	int counter = 0;
+
 	while (*str)
 	{
-		if (*str % 2 == 0)
+		if (counter++ % 2 == 0)
 			_putchar(*str);
 		str++;
 	}
