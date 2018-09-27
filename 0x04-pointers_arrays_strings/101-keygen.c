@@ -11,7 +11,7 @@ char random_ascii(void);
 int main(void)
 {
 	srand(time(0));
-	printf("%s", rand_added_to_n(2772));
+	printf("string that adds to n: %s\n", rand_added_to_n(2772));
 	return (0);
 }
 
@@ -38,7 +38,7 @@ char *rand_added_to_n(int n)
 		total = total + temp;
 		return_str[i++] = temp; 
 	}
-	return_str[i] = '\0';
+	/* return_str[i] = '\0'; */
 	p = &return_str[0];
 	return (p);	
 }
@@ -70,12 +70,11 @@ char random_ascii(void)
 		(rtrnCh >= 'a' && rtrnCh <= 'z') ||
 		(rtrnCh >= 'A' && rtrnCh <= 'Z'))
 	{
+		printf("Decimal Representation of returned Ch:%d\n", rtrnCh);
 		return (rtrnCh);
 	}
 	else
 		return (0);
-	/*else if (rtrnCh < MIN_ASCII)
-		rtrnCh = rtrnCh + MIN_ASCII;*/
 
 	return (rtrnCh);
 }
