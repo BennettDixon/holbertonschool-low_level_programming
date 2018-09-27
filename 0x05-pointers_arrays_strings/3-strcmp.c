@@ -23,7 +23,7 @@ int _strcmp(char *s1, char *s2)
 		return (-15);
 	if (s1Length > s2Length)
 		return (15);
-	
+
 	while (*s1)
 		if (*s1 < *s2)
 			return (-15);
