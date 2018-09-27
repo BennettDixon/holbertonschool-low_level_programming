@@ -14,7 +14,7 @@ int _strcmp(char *s1, char *s2)
 
 	if (*s1 == *s2)
 		return (0); /* don't do unneeded processing if = */
-	while (*(s1 + s1Length != '\0'))
+	while (*(s1 + s1Length) != '\0')
 		s1Length++;
 	while (*(s2 + s2Length) != '\0')
 		s2Length++;
