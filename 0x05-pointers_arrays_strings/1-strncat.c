@@ -1,4 +1,3 @@
-#include <stdio.h>
 /**
  * _strncat - concatanates two strings
  *
