@@ -2,24 +2,25 @@
 #include <time.h>
 #include <stdlib.h>
 
-void print_rand_added_to_n(int n);
+char *rand_added_to_n(int n);
 char random_ascii(void);
+
+/*static int MIN_ASCII = 40; */
+/*char *ASCII_OVERFLOW_ERR = "500";*/
 
 int main(void)
 {
 	srand(time(0));
-	/* printf("string that adds to n: %s\n", rand_added_to_n(2772)); */
-	print_rand_added_to_n(2772);
+	printf("string that adds to n: %s\n", rand_added_to_n(2772));
 	return (0);
 }
 
-void print_rand_added_to_n(int n)
+char *rand_added_to_n(int n)
 {
 	char temp;
-	/* char *p; */
-	/* char return_str[100]; */
-	/* int i = 0; */
-	int total = 0;
+	char *p;
+	char return_str[100];
+	int i = 0, total = 0;
 
 	while (total != n)
 	{
@@ -28,13 +29,18 @@ void print_rand_added_to_n(int n)
 		{	
 			continue;
 		}
+		/*
+		if (total + MIN_ASCII > n)
+			return(ASCII_OVERFLOW_ERR);
+		*/
 		if (total + temp > n)
 			temp = n - total;
 		total = total + temp;
-		/* return_str[i++] = temp; */
+		return_str[i++] = temp; 
 	}
-	/* printf("n is: %d\n", n); */
-	/* p = &return_str[0]; */
+	/* return_str[i] = '\0'; */
+	p = &return_str[0];
+	return (p);	
 }
 
 char random_ascii(void)
@@ -60,11 +66,15 @@ char random_ascii(void)
 		rtrnCh = rtrnCh * 10 + p2 - '0';
 	rtrnCh = rtrnCh * 10 + p1 - '0';
 
-	if ((rtrnCh >= '0' && rtrnCh <= '9') || (rtrnCh >= 'a' && rtrnCh <= 'z') || (rtrnCh >= 'A' && rtrnCh <= 'Z'))
+	if ((rtrnCh >= '0' && rtrnCh <= '9') || 
+		(rtrnCh >= 'a' && rtrnCh <= 'z') ||
+		(rtrnCh >= 'A' && rtrnCh <= 'Z'))
 	{
-		putchar(rtrnCh);
+		printf("Decimal Representation of returned Ch:%d\n", rtrnCh);
 		return (rtrnCh);
 	}
 	else
 		return (0);
+
+	return (rtrnCh);
 }
