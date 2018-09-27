@@ -29,7 +29,10 @@ void print_rand_added_to_n(int n)
 			continue;
 		}
 		if (total + temp > n)
+		{	
 			temp = n - total;
+		}
+		putchar(temp);
 		total = total + temp;
 		/* return_str[i++] = temp; */
 	}
@@ -62,7 +65,6 @@ char random_ascii(void)
 
 	if ((rtrnCh >= '0' && rtrnCh <= '9') || (rtrnCh >= 'a' && rtrnCh <= 'z') || (rtrnCh >= 'A' && rtrnCh <= 'Z'))
 	{
-		putchar(rtrnCh);
 		return (rtrnCh);
 	}
 	else
