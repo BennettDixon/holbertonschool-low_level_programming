@@ -11,23 +11,32 @@
 int _strcmp(char *s1, char *s2)
 {
 	int s1Length = 0, s2Length = 0;
+	int rtrnValNeg = -10;
+	int rtrnValPos = 10;
+	int smallerLength = 0;
 
-	if (*s1 == *s2)
-		return (0); /* don't do unneeded processing if = */
 	while (*(s1 + s1Length) != '\0')
 		s1Length++;
 	while (*(s2 + s2Length) != '\0')
 		s2Length++;
 
-	if (s1Length < s2Length)
-		return (-15);
-	if (s1Length > s2Length)
-		return (15);
+	smallerLength = (s1Length < s2Length) ? s1Length : s2Length;
+	rtrnValNeg -= smallerLength;
+	rtrnValPos += smallerLength;
 
-	while (*s1)
+	if (s1Length < s2Length)
+		return (rtrnValNeg);
+	if (s1Length > s2Length)
+		return (rtrnValPos);
+
+	while (*s1) /*same length, so loop through one and check both */
+	{	
 		if (*s1 < *s2)
-			return (-15);
+			return (rtrnValNeg);
 		if (*s1 > *s2)
-			return (15);
+			return (rtrnValPos);
+		s1++;
+		s2++;
+	}
 	return (0); /* equal */
 }
