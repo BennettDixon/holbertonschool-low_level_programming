@@ -21,7 +21,7 @@ int _strcmp(char *s1, char *s2)
 		s2Length++;
 
 	smallerLength = (s1Length < s2Length) ? s1Length : s2Length;
-	rtrnValNeg -= smallerLength;
+	rtrnValNeg += -(smallerLength);
 	rtrnValPos += smallerLength;
 
 	if (s1Length < s2Length)
