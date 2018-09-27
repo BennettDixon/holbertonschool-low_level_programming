@@ -30,7 +30,7 @@ int _strcmp(char *s1, char *s2)
 		return (rtrnValPos);
 
 	while (*s1) /*same length, so loop through one and check both */
-	{	
+	{
 		if (*s1 < *s2)
 			return (rtrnValNeg);
 		if (*s1 > *s2)
