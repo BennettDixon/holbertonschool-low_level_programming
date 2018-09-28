@@ -2,7 +2,7 @@
 
 char get_rot(char);
 /**
- * leet - encode str to rot13
+ * rot13 - encode str to rot13
  *
  * @str: string to convert
  *
@@ -43,13 +43,13 @@ char get_rot(char conv)
 			       rotn, rotn, rotn, rotn, rotn,
 			       rotn, rotn, rotn, -(rotn), -(rotn),
 			       -(rotn), -(rotn), -(rotn), -(rotn), -(rotn),
-                               -(rotn), -(rotn), -(rotn), -(rotn), -(rotn), 
+			       -(rotn), -(rotn), -(rotn), -(rotn), -(rotn),
 			       -(rotn), /* end lowercase */
 			       rotn, rotn, rotn, rotn, rotn,
 			       rotn, rotn, rotn, rotn, rotn,
 			       rotn, rotn, rotn, -(rotn), -(rotn),
-                               -(rotn), -(rotn), -(rotn), -(rotn), -(rotn),
-			       -(rotn), -(rotn), -(rotn), -(rotn), -(rotn), 
+			       -(rotn), -(rotn), -(rotn), -(rotn), -(rotn),
+			       -(rotn), -(rotn), -(rotn), -(rotn), -(rotn),
 			       -(rotn), 0};
 	int arrSize = 26 * 2;
 	int i = 0;
