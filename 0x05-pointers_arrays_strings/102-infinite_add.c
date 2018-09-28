@@ -5,7 +5,9 @@
  * @n1: *char - first number
  * @n2: *char - second number
  * @r:  *char - buffer where result is stored
- * @size_r int - size of buffer
+ * @size_r: int - size of buffer
+ *
+ * Return: pointer to r
  */
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
