@@ -16,7 +16,6 @@ char *_strncpy(char *dest, char *src, int n)
 		return (dest);
 	while (src[srcLength] != '\0')
 		srcLength++;
-	srcLength++;
 
 	if (n > srcLength)
 		n = srcLength;
