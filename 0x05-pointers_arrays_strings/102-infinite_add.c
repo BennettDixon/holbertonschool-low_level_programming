@@ -1,5 +1,6 @@
 #include <stdio.h> /* debugging use */
 #define FILL 100 /* fill with 'd' */
+void move_int_end_to_beg(char *str, int size, char fill);
 /**
  * infinite_add - adds two numbers
  *
@@ -13,27 +14,18 @@
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
 	int tempSizeR = size_r;
-	int bufferPlacer = 0;
-	int n1Length = 0, n2Length = 0;
-	int result = 0, carryStore = 0;
+	int n1Length = 0, n2Length = 0, result = 0, carryStore = 0;
 
 	while (*(n1 + n1Length) != '\0')
 		n1Length++;
 	while (*(n2 + n2Length) != '\0')
 		n2Length++;
-
 	/* account for 9999, 1, size_r:4, and extra space needed for '\0' */
 	if (n1Length > size_r - 2 || n2Length > size_r - 2)
 		return (0);
 	n1Length--, n2Length--; /* set element behind null byte */
-
 	while (size_r >= 0)
-	{	
-		if (size_r == tempSizeR) /* set last byte to null byte */
-		{
-			r[size_r--] = '\0';
-			continue;
-		}
+	{
 		if (n1Length < 0 && n2Length < 0 && carryStore == 0)
 		{
 			r[size_r--] = FILL;
@@ -58,19 +50,32 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 		n1Length--, n2Length--;
 		r[size_r--] = result + '0';
 	}
+	move_int_end_to_beg(r, tempSizeR, FILL);
+	return (r);
+}
+/**
+ * move_int_end_to_beg - moves integer from end of str to beginning
+ *
+ * @arr: string to change
+ * @arrSize: size of string including null byte
+ * @fillChar: character used to fill string that isn't part being moved
+ *
+ * Return: always void
+ */
+void move_int_end_to_beg(char *arr, int arrSize, char fillChar)
+{
+	int i = 0;
+	int bufferPlacer = 0;
 	/* below loop moves elements to beginning of array */
-	size_r = 0;
-	while (size_r < tempSizeR)
+	while (i < arrSize)
 	{
-		if (r[size_r] != FILL)
+		if (arr[i] != fillChar)
 		{
-			r[bufferPlacer++] = r[size_r];
-			r[size_r] = '\0';
+			arr[bufferPlacer++] = arr[i];
+			arr[i] = '\0';
 		}
 		else
-			r[size_r] = '\0';
-		size_r++;
+			arr[i] = '\0';
+		i++;
 	}
-
-	return (r);
 }
