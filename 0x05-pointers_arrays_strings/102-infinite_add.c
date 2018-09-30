@@ -27,7 +27,7 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 	while (size_r >= 0)
 	{
 		if (size_r == tempSizeR)
-		{
+		{ /* set last byte to end of string char or 'null byte' */
 			r[size_r--] = '\0';
 			continue;
 		}
