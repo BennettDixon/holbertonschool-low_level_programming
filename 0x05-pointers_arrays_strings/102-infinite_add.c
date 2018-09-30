@@ -1,4 +1,3 @@
-#include <stdio.h> /* debugging use */
 #define FILL 100 /* fill with 'd' */
 void move_int_end_to_beg(char *str, int size, char fill);
 /**
