@@ -26,6 +26,11 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 	n1Length--, n2Length--; /* set element behind null byte */
 	while (size_r >= 0)
 	{
+		if (size_r == tempSizeR)
+		{
+			r[size_r--] = '\0';
+			continue;
+		}
 		if (n1Length < 0 && n2Length < 0 && carryStore == 0)
 		{
 			r[size_r--] = FILL;
