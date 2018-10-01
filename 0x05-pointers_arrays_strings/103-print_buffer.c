@@ -15,6 +15,8 @@ void print_buffer(char *b, int size)
 	int quo, rem, i = 0;
 	int bitCounter = 0, numBitsInLine;
 
+	if (size == 0)
+		return;
 	quo = size / 10;
 	rem = size % 10;
 	if (rem)
