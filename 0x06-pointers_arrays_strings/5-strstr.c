@@ -10,26 +10,24 @@
 char *_strstr(char *haystack, char *needle)
 {
 	char *occurance;
-	char *tHayStack = haystack;
-	char *tNeedle = needle;
 
-	while (*tHayStack)
+	while (*haystack)
 	{
-		if (*tHayStack == *tNeedle) /* first ch match */
+		if (*haystack == *needle) /* first ch match */
 		{
-			occurance = tHayStack;
-			while (*tNeedle) /* check if match */
+			occurance = haystack;
+			while (*needle) /* check if match */
 			{
-				if (*tHayStack++ != *tNeedle++)
+				if (*haystack++ != *needle++)
 				{ /* not a match, reset pointer to first occurance */
-					tHayStack = occurance;
+					haystack = occurance;
 					break;
 				}
 			}
-			if (occurance != tHayStack) /* didn't reset, found match */
+			if (occurance != haystack) /* didn't reset, found match */
 				return (occurance);
 		}
-		tHayStack++;
+		haystack++;
 	}
-	return (tHayStack); /* didn't find match */
+	return (0); /* didn't find match */
 }
