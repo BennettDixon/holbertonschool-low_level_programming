@@ -1,3 +1,4 @@
+#include <stdio.h>
 /**
  * _strchr - finds if char occurs in string
  *
@@ -9,11 +10,12 @@
 char *_strchr(char *s, char c)
 {
 	char *start = s;
-	char *occurance;
 
-	while (*s != c)
-		s++;
-	occurance = s;
-	s = start;
-	return (occurance);
+	while (*start)
+	{
+		if (*start == c)
+			break;
+		start++;
+	}
+	return (start);
 }
