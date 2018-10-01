@@ -14,7 +14,6 @@ void print_buffer(char *b, int size)
 {
 	int quo, rem, i = 0;
 	int bitCounter = 0, numBitsInLine;
-	int nestedCounter = 0;
 
 	quo = size / 10;
 	rem = size % 10;
@@ -72,8 +71,8 @@ void print_buffer_line(char *b, int numBitsInLine, int currentPos)
 	{
 		if (nestedCounter >= numBitsInLine)
 			break;
-		if (b[currentPos + nestedCounter] >= 0x20
-			&& b[currentPos + nestedCounter] <= 0x7f)
+		if (b[currentPos + nestedCounter] >= 32
+			&& b[currentPos + nestedCounter] < 127)
 		{
 			printf("%c", b[currentPos + nestedCounter]);
 		}
