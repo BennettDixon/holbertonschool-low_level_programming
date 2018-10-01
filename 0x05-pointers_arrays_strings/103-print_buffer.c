@@ -72,8 +72,8 @@ void print_buffer_line(char *b, int numBitsInLine, int currentPos)
 	while (nestedCounter < 10)
 	{
 		if (nestedCounter >= numBitsInLine)
-			break;
-		if (b[currentPos + nestedCounter] >= 32
+			putchar(' ');
+		else if (b[currentPos + nestedCounter] >= 32
 			&& b[currentPos + nestedCounter] < 127)
 		{
 			printf("%c", b[currentPos + nestedCounter]);
