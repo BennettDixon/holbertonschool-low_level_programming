@@ -31,7 +31,15 @@ void print_buffer(char *b, int size)
 		i++;
 	}
 }
-
+/**
+ * print_hex_line - prints chars of buffer as hex in sets of 2
+ *
+ * @b: buffer to print line from
+ * @numBitsInLine: number of bits in line, print spaces to fill in
+ * @currentPos: position in array of starting point of line
+ *
+ * Return: always void
+ */
 void print_hex_line(char *b, int numBitsInLine, int currentPos)
 {
 	int nestedCounter = 0;
@@ -47,7 +55,15 @@ void print_hex_line(char *b, int numBitsInLine, int currentPos)
 		nestedCounter++;
 	}
 }
-
+/**
+ * print_buffer_line - prints chars of buffer as buffchar in sets of 2
+ *
+ * @b: buffer to print line from
+ * @numBitsInLine: number of bits in line, print spaces to fill in
+ * @currentPos: position in array of starting point of line
+ *
+ * Return: always void
+ */
 void print_buffer_line(char *b, int numBitsInLine, int currentPos)
 {
 	int nestedCounter = 0;
