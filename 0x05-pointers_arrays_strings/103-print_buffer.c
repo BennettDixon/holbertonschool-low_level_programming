@@ -72,7 +72,7 @@ void print_buffer_line(char *b, int numBitsInLine, int currentPos)
 	while (nestedCounter < 10)
 	{
 		if (nestedCounter >= numBitsInLine)
-			putchar(' ');
+			break;
 		else if (b[currentPos + nestedCounter] >= 32
 			&& b[currentPos + nestedCounter] < 127)
 		{
