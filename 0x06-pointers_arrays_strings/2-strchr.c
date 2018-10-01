@@ -8,11 +8,12 @@
  */
 char *_strchr(char *s, char c)
 {
-	while (*s)
-	{
-		if (*s == c)
-			return (s);
+	char *start = s;
+	char *occurance;
+
+	while (*s != c)
 		s++;
-	}
-	return (0);
+	occurance = s;
+	s = start;
+	return (occurance);
 }
