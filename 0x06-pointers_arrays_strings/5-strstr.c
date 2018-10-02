@@ -9,16 +9,19 @@
  */
 char *_strstr(char *haystack, char *needle)
 {
-	char *occurance;
+	char *occurance, *tempNeedle;
 
+	if (!*needle) /* empty needle */
+		return (haystack);
 	while (*haystack)
 	{
 		if (*haystack == *needle) /* first ch match */
 		{
 			occurance = haystack;
-			while (*needle) /* check if match */
+			tempNeedle = needle;
+			while (*tempNeedle) /* check if match */
 			{
-				if (*haystack++ != *needle++)
+				if (*haystack++ != *tempNeedle++)
 				{ /* not a match, reset pointer to first occurance */
 					haystack = occurance;
 					break;
