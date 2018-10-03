@@ -1,4 +1,5 @@
 int check_palindrome_recursive(char *start, char *end);
+int _strlen_recursion(char *s);
 /**
  * is_palindrome - checks if string is palindrome
  *
@@ -8,13 +9,13 @@ int check_palindrome_recursive(char *start, char *end);
  */
 int is_palindrome(char *s)
 {
-	char *end = s;
+	char *end;
+	int sLength;
 
 	if (!*s) /* empty string */
 		return (1);
-	while (*end)
-		end++;
-	end--; /* set end to char before null byte */
+	sLength = _strlen_recursion(s);
+	end = (s + (sLength - 1)); /* set end to char before null byte */
 	return (check_palindrome_recursive(s, end));
 }
 /**
@@ -32,4 +33,17 @@ int check_palindrome_recursive(char *start, char *end)
 	if (start > end) /* checked all chars up to middle */
 		return (1);
 	return (check_palindrome_recursive(start + 1, end - 1));
+}
+/**
+ * _strlen_recursion - gets strlen of s via recursive algorithm
+ *
+ * @s: string to check length of
+ *
+ * Return: int containing length of string
+ */
+int _strlen_recursion(char *s)
+{
+	if (!*s)
+		return (0);
+	return (1 + _strlen_recursion(s + 1));
 }
