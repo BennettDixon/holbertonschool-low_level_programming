@@ -43,3 +43,4 @@ void print_diagsums(int *a, int size);
 void set_string(char **s, char *to);
 void _puts_recursion(char *s);
 void _print_rev_recursion(char *s);
+int _strlen_recursion(char *s);
