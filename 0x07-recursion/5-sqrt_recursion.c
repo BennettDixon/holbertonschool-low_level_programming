@@ -8,9 +8,9 @@ int _find_sqrt(int prev, int find);
  */
 int _sqrt_recursion(int n)
 {
-	if (n < 0) /* error case */
+	if (n <= 0) /* error case */
 		return (-1);
-	return (_find_sqrt(n, n));
+	return (_find_sqrt(1, n));
 }
 /**
  * _find_sqrt - finds square root recursively, needs prev param
@@ -22,9 +22,9 @@ int _sqrt_recursion(int n)
  */
 int _find_sqrt(int prev, int find)
 {
-	if (prev <= 0) /* didn't find a nr, there was remainder */
+	if (prev > find) /* didn't find a nr, there was remainder */
 		return (-1);
 	if (prev * prev == find) /* natural root found */
 		return (prev);
-	return (_find_sqrt(prev - 1, find)); /* not super efficient */
+	return (_find_sqrt(prev + 1, find)); /* not super efficient */
 }
