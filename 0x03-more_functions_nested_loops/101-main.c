@@ -1,3 +1,4 @@
+#include <limits.h>
 #include "holberton.h"
 
 /**
@@ -7,7 +8,7 @@
  */
 int main(void)
 {
-    print_number(98);
+    print_number(INT_MIN);
     _putchar('\n');
     print_number(402);
     _putchar('\n');

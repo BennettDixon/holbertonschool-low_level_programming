@@ -12,12 +12,15 @@ char *cap_string(char *str)
 
 	while (str[i] != '\0')
 	{
+		if (i == 0)
+		{
+			if (str[i] >= 'a' && str[i] <= 'z')
+				str[i] -= 32;
+		}
 		if (char_is_seperator(str[i]))
 		{
 			if (str[i + 1] >= 'a' && str[i + 1] <= 'z')
 				str[i + 1] -= 32;
-			if (str[i] == '\t')
-				str[i] = ' ';
 		}
 		i++;
 	}
