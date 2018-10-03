@@ -10,8 +10,6 @@ int _sqrt_recursion(int n)
 {
 	if (n < 0) /* error case */
 		return (-1);
-	else if (n == 0) /* 0 case */
-		return (0);
 	return (_find_sqrt(n, n));
 }
 /**
