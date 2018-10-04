@@ -1,4 +1,4 @@
-# 0x06- Even more pointers, arrays, & strings
+# 0x07-C-Recursion
 
 Welcome to my  **low level C programming** experience at Holberton School. In this project we will be using recursion to complete different tasks. Read more about the goals below:
 
