@@ -3,8 +3,8 @@
 /**
  * main - entry point for program
  *
- * @argC: count of args present
- * @argV: array of char * pointing to args
+ * @argc: count of args present
+ * @argv: array of char * pointing to args
  *
  * Return: always 0 (success)
  */
