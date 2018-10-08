@@ -1,3 +1,5 @@
+#ifndef HOLBERTON_H
+#define HOLBERTON_H
 int _putchar(char c);
 int _isupper(int c);
 int _isdigit(int c);
@@ -19,7 +21,7 @@ void rev_string(char *s);
 void puts2(char *str);
 void puts_half(char *str);
 void print_array(int *a, int n);
-char *_strcpy(char *dest, char*src);
+char *_strcpy(char *dest, char *src);
 int _atoi(char *s);
 char *_strcat(char *dest, char *src);
 char *_strncat(char *dest, char *src, int n);
@@ -50,3 +52,4 @@ int _sqrt_recursion(int n);
 int is_prime_number(int n);
 int is_palindrome(char *s);
 int wildcmp(char *s1, char *s2);
+#endif /* HOLBERTON_H */
