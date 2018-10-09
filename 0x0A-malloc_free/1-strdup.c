@@ -14,8 +14,6 @@ char *_strdup(char *str)
 
 	if (str == NULL) /* null string */
 		return (NULL);
-	else if (!*str)
-		return (str);
 	strT = str;
 	while (*(str + strSize))
 		strSize++;
