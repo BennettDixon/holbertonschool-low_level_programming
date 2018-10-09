@@ -8,7 +8,7 @@
  */
 char *_strdup(char *str)
 {
-	char *dup;
+	char *dup, *strT;
 	char *dupStart;
 	int strSize = 0;
 
@@ -16,14 +16,15 @@ char *_strdup(char *str)
 		return (NULL);
 	else if (!*str)
 		return (str);
+	strT = str;
 	while (*(str + strSize))
 		strSize++;
 	dup = malloc(sizeof(*str) * (strSize + 1));
 	if (dup == NULL)
 		return (NULL);
 	dupStart = dup;
-	while (*str)
-		*dup++ = *str++;
+	while (*strT)
+		*dup++ = *strT++;
 	*dup = '\0'; /* null byte */
 	return (dupStart);
 }
