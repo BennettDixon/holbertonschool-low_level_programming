@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdlib.h>
 int get_word_length(char *str);
 int get_word_count(char *str);
@@ -25,7 +26,7 @@ char **strtow(char *str)
 		wordLen = get_word_length(str);
 		if (*str == ' ')
 			str = get_next_word(str);
-		words[i] = malloc(wordLen * sizeof(char) + 1);
+		words[i] = malloc((wordLen + 1) * sizeof(char));
 		if (words[i] == NULL)
 		{
 			while (i >= 0)
@@ -58,19 +59,19 @@ char **strtow(char *str)
  */
 int get_word_length(char *str)
 {
-	int wLen = 0, pending = 1;
+	int wLen = 0, pending = 1, i = 0;
 
-	while (*str)
+	while (*(str + i))
 	{
-		if (*str == ' ')
+		if (*(str + i) == ' ')
 			pending = 1;
-		else if (*str != ' ' && pending)
+		else if (pending)
 		{
 			wLen++;
 		}
-		if (wLen > 0 && *str == ' ')
+		if (wLen > 0 && *(str + i) == ' ')
 			break;
-		str++;
+		i++;
 	}
 	return (wLen);
 }
@@ -83,18 +84,18 @@ int get_word_length(char *str)
  */
 int get_word_count(char *str)
 {
-	int wc = 0, pending = 1;
+	int wc = 0, pending = 1, i = 0;
 
-	while (*str)
+	while (*(str + i))
 	{
-		if (*str == ' ')
+		if (*(str + i) == ' ')
 			pending = 1;
-		else if (*str != ' ' && pending)
+		else if (pending)
 		{
 			pending = 0;
 			wc++;
 		}
-		str++;
+		i++;
 	}
 	return (wc);
 }
@@ -108,14 +109,15 @@ int get_word_count(char *str)
 char *get_next_word(char *str)
 {
 	int pending = 0;
+	int i = 0;
 
-	while (*str)
+	while (*(str + i))
 	{
-		if (*str == ' ')
+		if (*(str + i) == ' ')
 			pending = 1;
 		else if (pending)
 			break;
-		str++;
+		i++;
 	}
-	return (str);
+	return (str + i);
 }
