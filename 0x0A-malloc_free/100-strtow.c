@@ -27,7 +27,15 @@ char **strtow(char *str)
 			str = get_next_word(str);
 		words[i] = malloc(wordLen * sizeof(char) + 1);
 		if (words[i] == NULL)
+		{
+			while (i >= 0)
+			{
+				i--;
+				free(words[i]);
+			}
+			free(words);
 			return (NULL);
+		}
 		n = 0;
 		while (n < wordLen)
 		{
