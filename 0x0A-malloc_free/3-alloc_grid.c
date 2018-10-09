@@ -1,5 +1,4 @@
 #include <stdlib.h>
-#include <stdio.h>
 /**
  * alloc_grid - allocates memory for a 2D array of ints
  *
@@ -16,10 +15,7 @@ int **alloc_grid(int width, int height)
 		return (NULL);
 	arr = malloc(sizeof(int *) * height);
 	while (i < height)
-	{	
 		arr[i++] = malloc(sizeof(int) * width);
-		printf("allocated arr[%d]\n", i - 1);
-	}
 	for (i = 0; i < height; i++)
 		for (n = 0; n < width; n++)
 			arr[i][n] = 0;
