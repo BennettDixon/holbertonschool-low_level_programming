@@ -12,7 +12,7 @@ char *_strdup(char *str)
 	char *dupStart;
 	int strSize = 0;
 
-	if (!*str) /* null string */
+	if (!*str || str == NULL) /* null string */
 		return (NULL);
 	while (*(str + strSize))
 		strSize++;
