@@ -19,6 +19,8 @@ char **strtow(char *str)
 	while (i < wc)
 	{
 		wordLen = get_word_length(str);
+		if (*str == ' ')
+			str = get_next_word(str);
 		words[i] = malloc(wordLen * sizeof(char) + 1);
 		n = 0;
 		while (n < wordLen)
@@ -42,10 +44,20 @@ char **strtow(char *str)
  */
 int get_word_length(char *str)
 {
-	int wLen = 0;
+	int wLen = 0, pending = 1;
 
-	while (*(str + wLen) != ' ' && *(str + wLen) != '\0')
-		wLen++;
+	while (*str)
+	{
+		if (*str == ' ')
+			pending = 1;
+		else if (*str != ' ' && pending)
+		{
+			wLen++;
+		}
+		if (wLen > 0 && *str == ' ')
+			break;
+		str++;
+	}
 	return (wLen);
 }
 /**
@@ -57,7 +69,7 @@ int get_word_length(char *str)
  */
 int get_word_count(char *str)
 {
-	int wc = 0, pending = 1; /* default 1 for 1st word */
+	int wc = 0, pending = 1;
 
 	while (*str)
 	{
@@ -87,7 +99,7 @@ char *get_next_word(char *str)
 	{
 		if (*str == ' ')
 			pending = 1;
-		if (*str != ' ' && pending)
+		else if (pending)
 			break;
 		str++;
 	}
