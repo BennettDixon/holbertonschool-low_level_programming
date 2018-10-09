@@ -1,4 +1,4 @@
-# 0x08- C - argC and argV
+# 0x09- C - argC and argV
 
 Welcome to my  **low level C programming** experience at Holberton School. In this project we will be using argC and argV to complete different tasks. Read more about the goals below:
 
