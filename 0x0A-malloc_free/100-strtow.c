@@ -14,14 +14,20 @@ char **strtow(char *str)
 	char **words;
 	int wc, wordLen, n, i = 0;
 
+	if (!*str || str == NULL)
+		return (NULL);
 	wc = get_word_count(str);
 	words = malloc((wc + 1) * sizeof(char *));
+	if (words == NULL)
+		return (NULL);
 	while (i < wc)
 	{
 		wordLen = get_word_length(str);
 		if (*str == ' ')
 			str = get_next_word(str);
 		words[i] = malloc(wordLen * sizeof(char) + 1);
+		if (words[i] == NULL)
+			return (NULL);
 		n = 0;
 		while (n < wordLen)
 		{
