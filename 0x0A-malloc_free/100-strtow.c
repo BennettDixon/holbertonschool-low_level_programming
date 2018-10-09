@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <stdlib.h>
 int get_word_length(char *str);
 int get_word_count(char *str);
@@ -20,7 +19,6 @@ char **strtow(char *str)
 	wc = get_word_count(str);
 	if (wc == 0)
 		return (NULL);
-	printf("wordcount:%d\n", wc);
 	words = malloc((wc + 1) * sizeof(char *));
 	if (words == NULL)
 		return (NULL);
@@ -29,7 +27,6 @@ char **strtow(char *str)
 		wordLen = get_word_length(str);
 		if (*str == ' ' || *str == '\t')
 			str = get_next_word(str);
-		printf("wordLength:%d\n", wordLen);
 		words[i] = malloc((wordLen + 1) * sizeof(char));
 		if (words[i] == NULL)
 		{
