@@ -22,6 +22,6 @@ char *_strdup(char *str)
 	dupStart = dup;
 	while (*str)
 		*dup++ = *str++;
-	*dup = *str; /* null byte */
+	*dup = '\0'; /* null byte */
 	return (dupStart);
 }
