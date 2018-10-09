@@ -14,8 +14,10 @@ char **strtow(char *str)
 	char **words;
 	int wc, wordLen, n, i = 0;
 
-	if (!*str || str == NULL)
+	if (str == NULL)
 		return (NULL);
+	else if (!*str)
+		return (str);
 	wc = get_word_count(str);
 	words = malloc((wc + 1) * sizeof(char *));
 	if (words == NULL)
