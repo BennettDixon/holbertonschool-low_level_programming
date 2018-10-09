@@ -11,7 +11,7 @@ int _strLen(char *);
  */
 char *argstostr(int ac, char **av)
 {
-	int i = 0, n = 0, totalSize;
+	int i = 0, n = 0, totalSize = 0;
 	char *newStr, *startNewStr;
 
 	if (ac <= 0 || av == NULL)
