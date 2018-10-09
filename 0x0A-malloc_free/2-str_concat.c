@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdlib.h>
 /**
  * str_concat - concatenates two strings, makes new string
@@ -12,6 +13,10 @@ char *str_concat(char *s1, char *s2)
 	int s1Size = 0, s2Size = 0;
 	char *conc, *concStart;
 
+	if (s1 == NULL)
+		s1 = "";
+	if (s2 == NULL)
+		s2 = "";
 	while (*(s1 + s1Size))
 		s1Size++;
 	while (*(s2 + s2Size))
