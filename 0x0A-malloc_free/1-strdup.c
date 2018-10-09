@@ -16,11 +16,12 @@ char *_strdup(char *str)
 		return (NULL);
 	while (*(str + strSize))
 		strSize++;
-	dup = malloc(sizeof(char) * strSize);
+	dup = malloc(sizeof(char) * (strSize + 1));
 	if (dup == NULL)
 		return (NULL);
 	dupStart = dup;
 	while (*str)
 		*dup++ = *str++;
+	*dup = *str; /* null byte */
 	return (dupStart);
 }
