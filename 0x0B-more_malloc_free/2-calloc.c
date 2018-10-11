@@ -1,5 +1,5 @@
 #include <stdlib.h>
-void *set_mem(void *p, unsigned int nmemb, int ch);
+void *set_mem(void *p, unsigned int nmemb, char ch);
 /**
  * _calloc - allocates memory for an array, and inits
  *
