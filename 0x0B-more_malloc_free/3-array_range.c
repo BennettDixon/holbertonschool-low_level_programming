@@ -27,6 +27,15 @@ int *array_range(int min, int max)
 	ret = fill_array_range(ret, min, max);
 	return (ret);
 }
+/**
+ * fill_array_range - fills an array with a range of nums
+ *
+ * @p: array to fill
+ * @min: bottom of range
+ * @max: top of range
+ *
+ * Return: pointer to beginning of filled array
+ */
 int *fill_array_range(int *p, int min, int max)
 {
 	int i = 0;
