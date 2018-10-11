@@ -1,5 +1,5 @@
 #include <stdlib.h>
-void *set_mem(void *p, unsigned int nmemb, char ch);
+void *set_mem(void *p, unsigned int nmemb, unsigned int size, char ch);
 /**
  * _calloc - allocates memory for an array, and inits
  *
@@ -17,7 +17,7 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 	ret = malloc(nmemb * size);
 	if (ret == NULL)
 		return (NULL);
-	ret = set_mem(ret, nmemb, '\0');
+	ret = set_mem(ret, nmemb, size, '\0');
 	return (ret);
 }
 /**
@@ -29,12 +29,12 @@ void *_calloc(unsigned int nmemb, unsigned int size)
  *
  * Return: void pointer to beginning of set memory
  */
-void *set_mem(void *p, unsigned int nmemb, char ch)
+void *set_mem(void *p, unsigned int nmemb, unsigned int size, char ch)
 {
 	char *cast = p;
 	unsigned int i = 0;
 
-	while (i < nmemb)
+	while (i < nmemb * size)
 		cast[i++] = ch;
 	return (p);
 }
