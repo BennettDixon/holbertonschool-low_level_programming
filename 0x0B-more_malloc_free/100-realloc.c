@@ -1,7 +1,4 @@
 #include <stdlib.h>
-#include <stdio.h>
-void copy_void_to_char(void *source, char **dest, unsigned int size);
-void copy_char_to_void(char *source, void **dest, unsigned int size);
 /**
  * _realloc - frees and reallocates previous space
  *
@@ -43,8 +40,6 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	}
 	if (old_size > new_size)
 		old_size = new_size;
-	/* for (i = 0; i < old_size; i++)
-		tempP[i] = temp[i]; */
 	free(temp);
 	return (ptr);
 }
