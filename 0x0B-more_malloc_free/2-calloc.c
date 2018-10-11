@@ -25,6 +25,7 @@ void *_calloc(unsigned int nmemb, unsigned int size)
  *
  * @p: pointer to beginning of memory to set
  * @nmemb: number of members of array
+ * @size: size of elements of array
  * @ch: character to set memory to
  *
  * Return: void pointer to beginning of set memory
