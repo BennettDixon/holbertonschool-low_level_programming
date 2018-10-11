@@ -17,7 +17,7 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 	ret = malloc(nmemb * size);
 	if (ret == NULL)
 		return (NULL);
-	ret = set_mem(ret, nmemb, 0);
+	ret = set_mem(ret, nmemb, '\0');
 	return (ret);
 }
 /**
@@ -29,7 +29,7 @@ void *_calloc(unsigned int nmemb, unsigned int size)
  *
  * Return: void pointer to beginning of set memory
  */
-void *set_mem(void *p, unsigned int nmemb, int ch)
+void *set_mem(void *p, unsigned int nmemb, char ch)
 {
 	char *cast = p;
 	unsigned int i = 0;
