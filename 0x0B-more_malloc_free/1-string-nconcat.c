@@ -4,6 +4,7 @@
  *
  * @s1: string 1 to concatenate with string 2
  * @s2: string 2 to concatenate with string 1
+ * @n: number of bytes to concatenate of s2
  *
  * Return: pointer to new string, or NULL on failure
  */
