@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
 	char *ret;
 
 	if (argc != 3)
-	{	
+	{
 		printf("Error\n");
 		return (98);
 	}
@@ -64,7 +64,7 @@ char *multiply_strings(char *s1, char *s2, char *buff, unsigned int size_b)
 	res =  _atoi(smaller);
 	while (i < res)
 	{
-		buff = infinite_add(buff, larger, buff, size_b); 
+		buff = infinite_add(buff, larger, buff, size_b);
 		i++;
 	}
 	return (buff);
