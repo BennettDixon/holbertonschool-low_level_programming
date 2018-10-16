@@ -53,7 +53,7 @@ dog_t *new_dog(char *name, float age, char *owner)
  */
 int _strlen(char *s)
 {
-	int i;
+	int i = 0;
 
 	for (i = 0; s[i]; i++)
 		;
@@ -73,6 +73,6 @@ char *_strcpy(char *dest, char *src)
 
 	while (*src)
 		*temp++ = *src++;
-	temp = '\0';
+	*temp = '\0';
 	return (dest);
 }
