@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
 	if ((op == '/' || op == '%') && !atoi(argv[3]))
 	{ /* divide by zero exception */
 		printf("Error\n");
-		return (98);
+		return (100);
 	}
 
 	/* actually do the operation now that we've error chcked */
@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
 	if (op_func == NULL)
 	{
 		printf("Error\n");
-		return (98);
+		return (99);
 	}
 	result = op_func(atoi(argv[1]), atoi(argv[3]));
 	printf("%d\n", result);
