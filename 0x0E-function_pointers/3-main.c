@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
 	int (*op_func)(int, int);
 	int result;
 
-	if (argc != 4)
+	if (argc != 4 || argv[2][1] != '\0')
 	{
 		printf("Error\n");
 		return (98);
