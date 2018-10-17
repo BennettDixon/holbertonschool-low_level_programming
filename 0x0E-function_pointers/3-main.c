@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
 	int (*op_func)(int, int);
 	int result;
 
-	if (argc != 4 || argv[2][1] != '\0')
+	if (argc != 4)
 	{
 		printf("Error\n");
 		return (98);
@@ -30,8 +30,8 @@ int main(int argc, char *argv[])
 
 	/* actually do the operation now that we've error chcked */
 	op_func = get_op_func(&op);
-	if (op_func == NULL)
-	{
+	if (op_func == NULL || argv[2][1] != '\0')
+	{ /* didn't find operator, or operator longer than 1 byte */
 		printf("Error\n");
 		return (99);
 	}
