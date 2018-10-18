@@ -10,6 +10,7 @@
 int main(int argc, char *argv[])
 {
 	unsigned char *p;
+	int i = 0;
 
 	if (argc != 2)
 	{
@@ -22,11 +23,12 @@ int main(int argc, char *argv[])
 		return (2);
 	}
 	p = (unsigned char *) main;
-	while (*p)
+	while (i < atoi(argv[1]) && *(p + i))
 	{
-		printf("%.2x", *p++);
-		if (*p != 0)
+		printf("%.2x", *(p + i));
+		if (*(p + (i + 1)) != 0)
 			putchar(' ');
+		i++;
 	
 	}
 	putchar('\n');
