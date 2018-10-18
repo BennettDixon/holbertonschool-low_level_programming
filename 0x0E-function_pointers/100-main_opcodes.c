@@ -9,6 +9,8 @@
  */
 int main(int argc, char *argv[])
 {
+	unsigned char *p;
+
 	if (argc != 2)
 	{
 		printf("Error\n");
@@ -19,5 +21,14 @@ int main(int argc, char *argv[])
 		printf("Error\n");
 		return (2);
 	}
+	p = (unsigned char *) main;
+	while (*p)
+	{
+		printf("%.2x", *p++);
+		if (*p != 0)
+			putchar(' ');
+	
+	}
+	putchar('\n');
 	return (0);
 }
