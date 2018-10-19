@@ -9,7 +9,7 @@
  */
 int main(int argc, char *argv[])
 {
-	unsigned char *p;
+	int (*f)(int, char**);
 	int i = 0;
 
 	if (argc != 2)
@@ -22,11 +22,11 @@ int main(int argc, char *argv[])
 		printf("Error\n");
 		exit(2);
 	}
-	p = (unsigned char *) main;
-	while (i < atoi(argv[1]) && *(p + i))
+	f = main;
+	while (i < atoi(argv[1]) && (unsigned char *)*(f + i))
 	{
-		printf("%.2x", *(p + i));
-		if (*(p + (i + 1)) != 0)
+		printf("%.2x", (unsigned char)*(f + i));
+		if ((unsigned char *)*(f + (i + 1)) != 0)
 			putchar(' ');
 		i++;
 	}
