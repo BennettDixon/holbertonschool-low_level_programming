@@ -2,12 +2,14 @@
 #include <stdio.h>
 typedef struct print_convert_variable
 {
+	char type;
 	void (*f)(void *);
-} conv_v;
+} conv_t;
 void _print_char(void *ch);
 void _print_integer(void *i);
 void _print_float(void *f);
 void _print_string(void *s);
+void (*get_print_func(char ch))(void *);
 /**
  * print_all - prints all parameters passed variadiclly
  * @format: string with types of variables, in order
@@ -17,21 +19,40 @@ void _print_string(void *s);
  */
 void print_all(const char * const format, ...)
 {
-	char *ch = "c";
-	int i = 10;
-	int *ip = &i;
-	float f = 10.45;
-	float *fp = &f;
-	char *s = "test";
+	va_list args;
+	void *arg;
+	void (*print_f)(void *);
+	unsigned int i = 0;
 
-	/*    debug     */
-	_print_char(ch);
-	_print_integer(ip);
-	_print_float(fp);
-	_print_string(s);
-	/* end of debug */
-
+	va_start(args, format);
+	while ((*(format + i)))
+	{
+		arg = va_arg(args, void *);
+		printf("char in loop:%c\n", *(format + i));
+		print_f = get_print_func(*(format + i));
+		if (print_f != NULL)
+		{
+			print_f(arg);
+			printf(", ");
+		}
+		i++;
+	}
 	putchar('\n');
+}
+void (*get_print_func(char ch))(void *)
+{
+	int i = 0;
+	conv_t convs[] = {
+		{ 'c', _print_char },
+		{ 'i', _print_integer },
+		{ 'f', _print_float },
+		{ 's', _print_string },
+		{ 0, NULL }
+	};
+
+	while (convs[i].f != NULL && convs[i].type != ch)
+		i++;
+	return (convs[i].f);
 }
 void _print_char(void *ch)
 {
