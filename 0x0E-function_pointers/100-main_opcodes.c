@@ -29,7 +29,6 @@ int main(int argc, char *argv[])
 		if (*(p + (i + 1)) != 0)
 			putchar(' ');
 		i++;
-	
 	}
 	putchar('\n');
 	return (0);
