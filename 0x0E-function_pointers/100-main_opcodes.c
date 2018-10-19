@@ -11,6 +11,7 @@ int main(int argc, char *argv[])
 {
 	int (*f)(int, char**);
 	int i = 0;
+	int hexByte;
 
 	if (argc != 2)
 	{
@@ -23,10 +24,11 @@ int main(int argc, char *argv[])
 		exit(2);
 	}
 	f = main;
-	while (i < atoi(argv[1]) && (unsigned char *)*(f + i))
+	while (i < atoi(argv[1]))
 	{
-		printf("%.2x", (unsigned char)*(f + i));
-		if ((unsigned char *)*(f + (i + 1)) != 0)
+		hexByte = *(unsigned char *)(f + i);
+		printf("%.2x", hexByte);
+		if (i < atoi(argv[1]) - 1)
 			putchar(' ');
 		i++;
 	}
