@@ -1,6 +1,5 @@
 #include <stdarg.h>
 #include <unistd.h>
-#include <stdio.h>
 int _putchar(char c);
 /**
  * print_strings - prints all strings given, variadic
