@@ -26,6 +26,8 @@ void print_numbers(const char *seperator, const unsigned int n, ...)
 		cur_num = va_arg(nums, int);
 		print_number(cur_num);
 		sep_cp = seperator; /* copy and print seperator after number */
+		if (seperator == NULL || *seperator == '\0')
+			continue;
 		while (*sep_cp && i != n - 1)
 			_putchar(*sep_cp++);
 	}
