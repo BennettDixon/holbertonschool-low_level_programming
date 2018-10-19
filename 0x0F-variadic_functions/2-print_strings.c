@@ -1,5 +1,6 @@
 #include <stdarg.h>
 #include <unistd.h>
+#include <stdio.h>
 int _putchar(char c);
 /**
  * print_strings - prints all strings given, variadic
@@ -15,7 +16,7 @@ void print_strings(const char *seperator, const unsigned int n, ...)
 	unsigned int i;
 	char *cur_str;
 	const char *sep_cp;
-	const char *nil, *nil_cp;
+	char *nil, *nil_cp;
 
 	nil = "(nil)";
 	va_start(strs, n);
@@ -23,14 +24,22 @@ void print_strings(const char *seperator, const unsigned int n, ...)
 	for (i = 0; i < n; i++)
 	{
 		cur_str = va_arg(strs, char *);
-		if (!*cur_str) /* null current string */
+		if (cur_str == NULL) /* null current string */
 		{
 			nil_cp = nil;
 			while (*nil_cp)
 				_putchar(*nil_cp++);
 		}
-		while (*cur_str) /* won't run if cur_str == NULL */
-			_putchar(*cur_str++);
+		else
+		{
+			while (*cur_str)
+			{
+				_putchar(*cur_str++);
+			}
+		}
+		/* seperate strings */
+		if (seperator == NULL || *seperator == '\0')
+			continue;	
 		sep_cp = seperator;
 		while ((*sep_cp) && (i < (n - 1)))
 			_putchar(*sep_cp++);
