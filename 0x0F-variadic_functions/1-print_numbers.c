@@ -16,20 +16,18 @@ void print_numbers(const char *seperator, const unsigned int n, ...)
 	va_list nums;
 	unsigned int i;
 	int cur_num;
-	const char *sep_cp;
 
 	va_start(nums, n);
 	for (i = 0; i < n; i++) /* loop through variadic variables */
 	{
 		cur_num = va_arg(nums, int);
 		print_number(cur_num);
-		sep_cp = seperator; /* copy and print seperator after number */
 		if (seperator == NULL || *seperator == '\0')
 			continue;
-		while (*sep_cp && i != n - 1)
-			_putchar(*sep_cp++);
+		if (i != n - 1)
+			printf("%s", seperator);
 	}
-	_putchar('\n');
+	putchar('\n');
 	va_end(nums);
 }
 /**
