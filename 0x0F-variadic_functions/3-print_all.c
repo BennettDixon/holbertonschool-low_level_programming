@@ -16,18 +16,16 @@ void (*get_print_func(char ch))(va_list *args);
 void print_all(const char * const format, ...)
 {
 	va_list args;
-	void (*print_f)(va_list *);
 	unsigned int i = 0;
 	char *seperator = "";
 
 	va_start(args, format);
 	while ((*(format + i)))
 	{
-		print_f = get_print_func(*(format + i));
-		if (print_f != NULL)
+		if (get_print_func(*(format + i)) != NULL)
 		{
 			printf("%s", seperator);
-			print_f(&args);
+			get_print_func(*(format + i))(&args);
 			seperator = ", ";
 		}
 		i++;
