@@ -18,7 +18,6 @@ void print_all(const char * const format, ...)
 	unsigned int i = 0;
 	int n = 0;
 	char *seperator = "";
-	void (*f)(va_list *);
 	conv_t convs[] = {
 		{ 'c', _print_char },
 		{ 'i', _print_integer },
@@ -33,11 +32,10 @@ void print_all(const char * const format, ...)
 		n = 0;
 		while (convs[n].f != NULL && convs[n].type != *(format + i))
 			n++;
-		f = convs[n].f;
-		if (f != NULL)
+		if (convs[n].f != NULL)
 		{
 			printf("%s", seperator);
-			f(&args);
+			convs[n].f(&args);
 			seperator = ", ";
 		}
 		i++;
