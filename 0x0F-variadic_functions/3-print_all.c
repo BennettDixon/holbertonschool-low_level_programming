@@ -5,7 +5,6 @@ void _print_char(va_list *args);
 void _print_integer(va_list *args);
 void _print_float(va_list *args);
 void _print_string(va_list *args);
-void (*get_print_func(char ch))(va_list *args);
 /**
  * print_all - prints all parameters passed variadiclly
  * @format: string with types of variables, in order
@@ -17,31 +16,9 @@ void print_all(const char * const format, ...)
 {
 	va_list args;
 	unsigned int i = 0;
+	int n = 0;
 	char *seperator = "";
-
-	va_start(args, format);
-	while ((*(format + i)))
-	{
-		if (get_print_func(*(format + i)) != NULL)
-		{
-			printf("%s", seperator);
-			get_print_func(*(format + i))(&args);
-			seperator = ", ";
-		}
-		i++;
-	}
-	putchar('\n');
-}
-/**
- * get_print_func - gets proper print function for paramater in va_list
- * @ch: character to get proper function for
- *
- * Return: pointer to a function that returns void and takes a paramater of
- *	   type va_list
- */
-void (*get_print_func(char ch))(va_list *)
-{
-	int i = 0;
+	void (*f)(va_list *);
 	conv_t convs[] = {
 		{ 'c', _print_char },
 		{ 'i', _print_integer },
@@ -50,9 +27,22 @@ void (*get_print_func(char ch))(va_list *)
 		{ 0, NULL }
 	};
 
-	while (convs[i].f != NULL && convs[i].type != ch)
+	va_start(args, format);
+	while ((*(format + i)))
+	{
+		n = 0;
+		while (convs[n].f != NULL && convs[n].type != *(format + i))
+			n++;
+		f = convs[n].f;
+		if (f != NULL)
+		{
+			printf("%s", seperator);
+			f(&args);	
+			seperator = ", ";
+		}
 		i++;
-	return (convs[i].f);
+	}
+	putchar('\n');
 }
 /**
  * _print_char - prints a character
