@@ -37,7 +37,7 @@ void print_all(const char * const format, ...)
 		if (f != NULL)
 		{
 			printf("%s", seperator);
-			f(&args);	
+			f(&args);
 			seperator = ", ";
 		}
 		i++;
