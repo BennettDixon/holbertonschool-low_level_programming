@@ -38,7 +38,7 @@ void print_strings(const char *seperator, const unsigned int n, ...)
 		}
 		/* seperate strings */
 		if (seperator == NULL || *seperator == '\0')
-			continue;	
+			continue;
 		sep_cp = seperator;
 		while ((*sep_cp) && (i < (n - 1)))
 			putchar(*sep_cp++);
