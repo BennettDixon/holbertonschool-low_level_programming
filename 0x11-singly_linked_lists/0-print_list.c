@@ -3,10 +3,10 @@
 size_t print_list(const list_t *h)
 {
 	const list_t *temp;
-	size_t n_nodes = 1;
+	size_t n_nodes = 0;
 
 	temp = h;
-	while (temp->next != NULL)
+	while (temp != NULL)
 	{
 		printf("[%u] ", temp->len);
 		if (!temp->str)
