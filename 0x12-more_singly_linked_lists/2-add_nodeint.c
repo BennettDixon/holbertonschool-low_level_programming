@@ -3,7 +3,7 @@
 /**
  * add_nodeint - adds a node of listint_t to the head of a linked list
  * @head: pointer to a list_t pointer that points to the head struct
- * @str: string to add as node
+ * @n: integer data to put in new node
  *
  * Return: pointer to new head of list, NULL on failure
  */
