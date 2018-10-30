@@ -27,8 +27,7 @@ listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 			temp_h->next = new_node;
 			return (new_node);
 		}
-		if (temp_h->next) /* not end of list */
-			temp_h = temp_h->next;
+		temp_h = temp_h->next;
 		ctr++;
 	}
 	return (NULL); /* didn't find node */
