@@ -2,7 +2,7 @@
 #define _LISTS_H_
 #include <stdlib.h>
 /**
- * struct list_s - singly linked list
+ * struct listint_s - singly linked list
  * @n: number to store (data)
  * @next: points to the next node
  *
