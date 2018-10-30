@@ -30,8 +30,7 @@ int delete_nodeint_at_index(listint_t **head, unsigned int index)
 			free(temp_node);
 			return (1);
 		}
-		if (temp_h->next) /* not end of list */
-			temp_h = temp_h->next;
+		temp_h = temp_h->next;
 		ctr++;
 	}
 	return (-1); /* didn't find node */
