@@ -18,8 +18,7 @@ listint_t *get_nodeint_at_index(listint_t *head, unsigned int index)
 	{
 		if (ctr == index)
 			return (temp_h);
-		if (temp_h->next)
-			temp_h = temp_h->next;
+		temp_h = temp_h->next;
 		ctr++;
 	}
 	return (NULL); /* didn't find node */
