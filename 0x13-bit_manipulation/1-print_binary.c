@@ -1,4 +1,10 @@
 #include "holberton.h"
+/**
+ * print_binary - prints a binary number using bit shifting and masks
+ * @n: number to print
+ *
+ * Return: always void
+ */
 void print_binary(unsigned long int n)
 {
 	unsigned int mask = 32768; /* 1000 0000 0000 0000 */
