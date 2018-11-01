@@ -11,6 +11,8 @@ int set_bit(unsigned long int *n, unsigned int index)
 	unsigned long int mask = 0x01;
 
 	mask = mask << index;
+	if (mask == 0x00) /* SOMETHING WENT WRONG MASK IS ALL 0'S */
+		return (-1);
 	*n |= mask;
 	return (1);
 }
