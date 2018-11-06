@@ -46,18 +46,18 @@ int main(int argc, char *argv[])
 		_EOF = read(from_fd, buff, 1024);
 		if (_EOF < 0) /* error reading file */
 		{
-			read_error(argv[1]);
 			safe_close(from_fd);
 			safe_close(to_fd);
+			read_error(argv[1]);
 			exit(98);
 		}
 		bytes_read += _EOF;
 		err = write(to_fd, buff, _EOF);
 		if (err < 0) /* failed to write */
 		{
-			write_error(argv[2]);
 			safe_close(from_fd);
 			safe_close(to_fd);
+			write_error(argv[2]);
 			exit(99);
 		}
 
@@ -69,7 +69,7 @@ int main(int argc, char *argv[])
 		}
 	}
 	if (bytes_read > 1024) /* didn't close it in loop, close now */
-	{	
+	{
 		err = safe_close(to_fd);
 		if (err < 0) /* close file failure */
 			exit(100);
@@ -98,6 +98,7 @@ int safe_close(int filedescriptor)
 
 /**
  * read_error - prints a read error message to stderr
+ * @filename: filename to print out for errorcode
  *
  * Return: always void
  */
@@ -108,6 +109,7 @@ void read_error(char *filename)
 
 /**
  * write_error - prints a write error message to stderr
+ * @filename: filename to print out for errorcode
  *
  * Return: always void
  */
