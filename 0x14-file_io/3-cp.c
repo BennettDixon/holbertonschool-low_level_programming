@@ -35,8 +35,6 @@ int main(int argc, char *argv[])
 	{
 		if (bytes_read == 0)
 			to_fd = open(argv[2], O_WRONLY | O_TRUNC | O_CREAT, 0664);
-		else if (bytes_read < 2048)
-			to_fd = open(argv[2], O_WRONLY | O_APPEND);
 		if (to_fd < 0) /* failed to open/create to_file */
 		{
 			safe_close(from_fd);
@@ -60,20 +58,10 @@ int main(int argc, char *argv[])
 			write_error(argv[2]);
 			exit(99);
 		}
-
-		if (bytes_read <= 1024)
-		{
-			err = safe_close(to_fd);
-			if (err < 0) /* close file failure */
-				exit(100);
-		}
 	}
-	if (bytes_read > 1024) /* didn't close it in loop, close now */
-	{
-		err = safe_close(to_fd);
-		if (err < 0) /* close file failure */
+	err = safe_close(to_fd);
+	if (err < 0) /* close file failure */
 			exit(100);
-	}
 	err = safe_close(from_fd);
 	if (err < 0)
 		exit(100);
