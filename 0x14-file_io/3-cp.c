@@ -34,8 +34,8 @@ int main(int argc, char *argv[])
 	to_fd = open(argv[2], O_WRONLY | O_TRUNC | O_CREAT, 0664);
 	if (to_fd < 0) /* failed to open/create to_file */
 	{
-		safe_close(from_fd);
 		write_error(argv[2]);
+		safe_close(from_fd);
 		exit(99);
 	}
 	while (_EOF)
@@ -43,18 +43,18 @@ int main(int argc, char *argv[])
 		_EOF = read(from_fd, buff, 1024);
 		if (_EOF < 0) /* error reading file */
 		{
+			read_error(argv[1]);
 			safe_close(from_fd);
 			safe_close(to_fd);
-			read_error(argv[1]);
 			exit(98);
 		}
 		bytes_read += _EOF;
 		err = write(to_fd, buff, _EOF);
 		if (err < 0) /* failed to write */
 		{
+			write_error(argv[2]);
 			safe_close(from_fd);
 			safe_close(to_fd);
-			write_error(argv[2]);
 			exit(99);
 		}
 	}
