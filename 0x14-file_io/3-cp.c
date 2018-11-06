@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
 		safe_close(from_fd);
 		exit(99);
 	}
-	while (_EOF)
+	do
 	{
 		_EOF = read(from_fd, buff, 1024);
 		if (_EOF < 0) /* error reading file */
@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
 			safe_close(to_fd);
 			exit(99);
 		}
-	}
+	} while (_EOF > 1024);
 	err = safe_close(to_fd);
 	if (err < 0) /* close file failure */
 	{
