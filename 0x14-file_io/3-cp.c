@@ -5,7 +5,9 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
-void safe_close(int);
+int safe_close(int);
+void write_error(char *);
+void read_error(char *);
 /**
  * main - entry point for program to copy files
  * @argc: count of arguments passed
@@ -26,7 +28,7 @@ int main(int argc, char *argv[])
 	from_fd = open(argv[1], O_RDONLY);
 	if (from_fd < 0) /* file didn't exist */
 	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+		read_error(argv[1]);
 		exit(98);
 	}
 	while (_EOF)
@@ -37,14 +39,14 @@ int main(int argc, char *argv[])
 			to_fd = open(argv[2], O_WRONLY | O_APPEND);
 		if (to_fd < 0) /* failed to open/create to_file */
 		{
-			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
 			safe_close(from_fd);
+			write_error(argv[2]);
 			exit(99);
 		}
 		_EOF = read(from_fd, buff, 1024);
 		if (_EOF < 0) /* error reading file */
 		{
-			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+			read_error(argv[1]);
 			safe_close(from_fd);
 			safe_close(to_fd);
 			exit(98);
@@ -53,18 +55,28 @@ int main(int argc, char *argv[])
 		err = write(to_fd, buff, _EOF);
 		if (err < 0) /* failed to write */
 		{
-			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
+			write_error(argv[2]);
 			safe_close(from_fd);
 			safe_close(to_fd);
 			exit(99);
 		}
 
 		if (bytes_read <= 1024)
-			safe_close(to_fd);
+		{
+			err = safe_close(to_fd);
+			if (err < 0) /* close file failure */
+				exit(100);
+		}
 	}
 	if (bytes_read > 1024) /* didn't close it in loop, close now */
-		safe_close(to_fd);
-	safe_close(from_fd);
+	{	
+		err = safe_close(to_fd);
+		if (err < 0) /* close file failure */
+			exit(100);
+	}
+	err = safe_close(from_fd);
+	if (err < 0)
+		exit(100);
 	return (1);
 }
 
@@ -72,16 +84,34 @@ int main(int argc, char *argv[])
  * safe_close - closes a file and exits/prints error if close encounters error
  * @filedescriptor: file descriptor for file to be closed
  *
- * Return: always void, exits on failure
+ * Return: 1 on success, -1 on failure (status code received from close())
  */
-void safe_close(int filedescriptor)
+int safe_close(int filedescriptor)
 {
 	int err;
 
 	err = close(filedescriptor);
 	if (err < 0)
-	{
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", filedescriptor);
-		exit(100);
-	}
+	return (err);
+}
+
+/**
+ * read_error - prints a read error message to stderr
+ *
+ * Return: always void
+ */
+void read_error(char *filename)
+{
+	dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", filename);
+}
+
+/**
+ * write_error - prints a write error message to stderr
+ *
+ * Return: always void
+ */
+void write_error(char *filename)
+{
+	dprintf(STDERR_FILENO, "Error: Can't write to %s\n", filename);
 }
