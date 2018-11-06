@@ -6,6 +6,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 void safe_close(int);
+/**
+ * main - entry point for program to copy files
+ * @argc: count of arguments passed
+ * @argv: array of char pointers to the arguments
+ *
+ * Return: 1 on success, exits on failure w/ error code
+ */
 int main(int argc, char *argv[])
 {
 	char buff[1024];
@@ -25,7 +32,7 @@ int main(int argc, char *argv[])
 	while (_EOF)
 	{
 		if (bytes_read < 1024)
-			to_fd = open(argv[2], O_WRONLY | O_TRUNC | O_CREAT, 0664); 
+			to_fd = open(argv[2], O_WRONLY | O_TRUNC | O_CREAT, 0664);
 		else if (bytes_read < 2048)
 			to_fd = open(argv[2], O_WRONLY | O_APPEND);
 		if (to_fd < 0) /* failed to open/create to_file */
