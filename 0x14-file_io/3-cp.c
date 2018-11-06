@@ -48,6 +48,8 @@ int main(int argc, char *argv[])
 			safe_close(to_fd);
 			exit(98);
 		}
+		else if (_EOF == 0) /* reached end of file */
+			break;
 		bytes_read += _EOF;
 		err = write(to_fd, buff, _EOF);
 		if (err < 0) /* failed to write */
