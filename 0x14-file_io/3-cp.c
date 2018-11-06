@@ -16,7 +16,7 @@ void safe_close(int);
 int main(int argc, char *argv[])
 {
 	char buff[1024];
-	int bytes_read = 0, _EOF = 1, from_fd = -1, to_fd = -1, err = 0, len = 0;
+	int bytes_read = 0, _EOF = 1, from_fd = -1, to_fd = -1, err = 0;
 
 	if (argc != 3)
 	{
@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
 	}
 	while (_EOF)
 	{
-		if (bytes_read < 1024)
+		if (bytes_read == 0)
 			to_fd = open(argv[2], O_WRONLY | O_TRUNC | O_CREAT, 0664);
 		else if (bytes_read < 2048)
 			to_fd = open(argv[2], O_WRONLY | O_APPEND);
@@ -49,10 +49,8 @@ int main(int argc, char *argv[])
 			safe_close(to_fd);
 			exit(98);
 		}
-		bytes_read += _EOF, len = 0;
-		while (buff[len])
-			len++;
-		err = write(to_fd, buff, len);
+		bytes_read += _EOF;
+		err = write(to_fd, buff, _EOF);
 		if (err < 0) /* failed to write */
 		{
 			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
