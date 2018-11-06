@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
 			exit(98);
 		}
 		bytes_read += _EOF, len = 0;
-		while (buff[len])
+		while (buff && buff[len])
 			len++;
 		err = write(to_fd, buff, len);
 		if (err < 0) /* failed to write */
