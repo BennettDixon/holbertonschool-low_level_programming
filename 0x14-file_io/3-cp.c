@@ -61,7 +61,7 @@ int main(int argc, char *argv[])
 	}
 	err = safe_close(to_fd);
 	if (err < 0) /* close file failure */
-			exit(100);
+		exit(100);
 	err = safe_close(from_fd);
 	if (err < 0)
 		exit(100);
