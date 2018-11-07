@@ -69,7 +69,7 @@ int main(int argc, char *argv[])
 	err = safe_close(from_fd);
 	if (err < 0)
 		exit(100);
-	return (1);
+	return (0);
 }
 
 /**
