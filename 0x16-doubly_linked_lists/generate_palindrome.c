@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+char is_palindrome(unsigned int num);
 /**
  * main - entry point to find palindrome program
  *
@@ -22,9 +23,17 @@ int main(void)
 	printf("Largest palindrome of 3 digit numbers is: %d\n", max);
 }
 
-char is_palindrome(unsigned int n)
+char is_palindrome(unsigned int num)
 {
-	unsigned int reverse;
+	unsigned int reverse = 0, rem = 0, n = num;
 
-	reverse = (n
+	while (n != 0)
+	{
+		rem = n % 10;
+		reverse = reverse * 10 + rem;
+		n /= 10;
+	}
+	if (reverse == num)
+		return (1);
+	return (0);
 }
