@@ -22,7 +22,7 @@ char *hash_table_get(const hash_table_t *ht, const char *key)
 	key_i = key_index((unsigned char *)key, ht->size);
 	if ((ht->array)[key_i] == NULL)
 		return (NULL);
-	
+
 	poss_nodes = ht->array[key_i];
 	while (!value)
 	{
