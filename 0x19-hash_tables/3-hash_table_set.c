@@ -4,6 +4,7 @@
 
 /**
  * hash_table_set - sets a hash table key value pair in hash table
+ * @ht: hash table to set in
  * @key: key to generate hash value and index off
  * @value: value to set as hash_node's value
  *
