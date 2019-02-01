@@ -1,5 +1,4 @@
 #include "sort.h"
-#include <stdlib.h>
 
 /**
  * insertion_sort_list - performs insertion sort on a list
