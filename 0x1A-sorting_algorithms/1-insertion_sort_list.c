@@ -12,13 +12,14 @@ size_t list_len(const listint_t *list);
  */
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *sorted = *list;
-	listint_t *unsorted, *prev = NULL, *next = NULL, *ele = NULL;
+	listint_t *sorted, *unsorted, *prev, *next, *ele;
 
+	sorted = unsorted = prev = next = ele = NULL;
 	/* NO LIST, OR LIST IS ONE ELE */
 	if (!list || !(*list) || !((*list)->next))
 		return;
 
+	sorted = *list;
 	unsorted = get_list_end(*list);
 	while (sorted && unsorted)
 	{
