@@ -13,6 +13,8 @@ void selection_sort(int *array, size_t size)
 {
 	size_t unsorted_i = 0, ele_pos = 0, sorted_i = 0;
 
+	if (!array || size <= 1)
+		return;
 	while (sorted_i < size)
 	{
 		unsorted_i = sorted_i;
