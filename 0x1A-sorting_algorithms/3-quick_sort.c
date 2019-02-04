@@ -18,6 +18,15 @@ void quick_sort(int *array, size_t size)
 	sort(array, size, 0, size - 1);
 }
 
+/**
+ * sort - helper function for quick sort so it can use recurssion
+ * @array: array to sort
+ * @size: size of array used for printing
+ * @left: left bound of array, used in recursion
+ * @right: right bound of array, used in recursion
+ *
+ * Return: always void
+ */
 void sort(int *array, size_t size, size_t left, size_t right)
 {
 	size_t part_start = 0;
@@ -33,10 +42,12 @@ void sort(int *array, size_t size, size_t left, size_t right)
 /**
  * get_partition - performs recursive sorting for quick sort
  * @array: array to sort
- * @left: index of start in array
- * @right: index of end in array
+ * @size: size of array used for printing
+ * @l: index of start in array
+ * @r: index of end in array
+ * @pvt: value of pivot point (not index raw value as int)
  *
- * Return: TRUE or FALSE (1 or 0) respectively, unsigned char
+ * Return: partition mid point for seperate partitions
  */
 size_t get_partition(int *array, size_t size, size_t l, size_t r, int pvt)
 {
