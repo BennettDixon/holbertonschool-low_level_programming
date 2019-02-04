@@ -13,6 +13,8 @@ size_t get_partition(int *array, size_t size, size_t l, size_t r, int pvt);
  */
 void quick_sort(int *array, size_t size)
 {
+	if (!array || size <= 1)
+		return;
 	sort(array, size, 0, size - 1);
 }
 
