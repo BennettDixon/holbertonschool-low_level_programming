@@ -1,5 +1,7 @@
 #include "sort.h"
 
+#include <stdio.h>
+
 void swap(int *array, size_t pos1, size_t pos2);
 
 /**
@@ -28,8 +30,11 @@ void selection_sort(int *array, size_t size)
 			}
 			unsorted_i++;
 		}
-		swap(array, sorted_i, ele_pos);
-		print_array(array, size);
+		if (array[ele_pos] < array[sorted_i])
+		{
+			swap(array, sorted_i, ele_pos);
+			print_array(array, size);
+		}
 		sorted_i++;
 	}
 }
