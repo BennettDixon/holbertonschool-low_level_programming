@@ -11,12 +11,15 @@ void sort_deck(deck_node_t **deck)
 	deck_node_t *end = *deck;
 
 	while (end->next)
-		end = end->next;	
+		end = end->next;
 	swap_card((*deck)->next->next, end, deck);
 }
 
 /**
  * swap_card - swaps to card nodes in a linked list
+ * IMPORTANT: do not have node1 be after node2 in the list ->
+ * implementation is UNDEFINED when this is the case.
+ *
  * @n1: node1 to swap with node2
  * @n2: node2 to swap with node1
  * @deck: double pointer to deck if head modification is needed
