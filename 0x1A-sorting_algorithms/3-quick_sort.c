@@ -31,7 +31,7 @@ void sort(int *array, size_t size, size_t left, size_t right)
 	size_t part_start = 0;
 	int pvt = array[get_pivot(array, left, right)];
 
-	if ((long int)right - (long int)left <= 0)
+	if ((long int) right - (long int)left <= 0)
 		return;
 	part_start = get_partition(array, size, left, right, pvt);
 	sort(array, size, left, part_start - 1);
@@ -67,7 +67,7 @@ size_t get_partition(int *array, size_t size, size_t l, size_t r, int pvt)
 			}
 		}
 	}
-	if (l + 1 != end)
+	if (l + 1 != end && array[l + 1] > array[end])
 	{
 		swap(array, l + 1, end);
 		print_array(array, size);
