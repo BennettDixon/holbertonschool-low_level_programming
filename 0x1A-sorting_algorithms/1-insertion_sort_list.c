@@ -1,8 +1,5 @@
 #include "sort.h"
 
-/* DEBUG */
-#include <stdio.h>
-
 listint_t *get_list_end(listint_t *list);
 size_t list_len(const listint_t *list);
 

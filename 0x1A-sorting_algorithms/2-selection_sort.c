@@ -1,7 +1,5 @@
 #include "sort.h"
 
-#include <stdio.h>
-
 void swap(int *array, size_t pos1, size_t pos2);
 
 /**
