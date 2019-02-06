@@ -3,6 +3,11 @@
 
 #include <stdlib.h>
 
+#define FALSE 0
+#define TRUE 1
+
+typedef unsigned char BOOL;
+
 typedef enum kind_e
 {
     SPADE = 0,

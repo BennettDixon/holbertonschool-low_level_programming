@@ -1,5 +1,11 @@
 #include "deck.h"
 
+#include <stdio.h>
+void print_deck(const deck_node_t *deck);
+
+void qsort_deck(deck_node_t *left, deck_node_t *right, deck_node_t **deck);
+void lomuto_part(deck_node_t *left, deck_node_t *right, deck_node_t **deck);
+int card_comp(const card_t *card1, const card_t *card2);
 void swap_card(deck_node_t *n1, deck_node_t *n2, deck_node_t **deck);
 
 /**
@@ -12,7 +18,125 @@ void sort_deck(deck_node_t **deck)
 
 	while (end->next)
 		end = end->next;
-	swap_card((*deck)->next->next, end, deck);
+	lomuto_part(*deck, end, deck);
+}
+
+/**
+ * qsort_deck - quick sorts a deck of cards recursively
+ * @deck: double pointer to the deck for head modification
+ * @left: pointer to left (start) of linked list
+ * @right: pointer to right (end) of linked list
+ */
+void qsort_deck(deck_node_t *left, deck_node_t *right, deck_node_t **deck)
+{
+	(void)deck;
+	(void)left;
+	(void)right;
+}
+
+/**
+ * lomuto_part - does lomuto partitioning for deck
+ * @deck: double pointer to the deck for head modification
+ * @left: pointer to left (start) of linked list
+ * @right: pointer to right (end) of linked list
+ */
+void lomuto_part(deck_node_t *left, deck_node_t *right, deck_node_t **deck)
+{
+	deck_node_t *temp_l, *temp_r, *pivot;
+
+	temp_l = temp_r = left;
+	pivot = right;
+	while(temp_r && temp_l && temp_r != right->next)
+	{
+		if (!card_comp(temp_r->card, pivot->card))
+		{
+			temp_l = temp_l->next;
+			swap_card(temp_l->prev, temp_r, deck);
+			print_deck(*deck);
+		}
+		temp_r = temp_r->next;
+	}
+}
+
+/**
+ * card_comp - compares to cards evaluting suit and value
+ * @card1: card 1 to compare with card 2
+ * @card2: card 2 to compare with card 1
+ *
+ * Return: 0 if card 1 is greater than card 2
+ *         1 if card 2 is greater than card 1
+ *        -1 on errror
+ */
+int card_comp(const card_t *card1, const card_t *card2)
+{
+	int c1_val, c2_val;
+	BOOL suit_greater = FALSE;
+	BOOL suit_equal = FALSE;
+
+	printf("CARD_COMP comparing [%s S:%d] with [%s S:%d]\n", card1->value, card1->kind, card2->value, card2->kind);
+	switch (card1->kind)
+	{
+		case 0:
+			if (card2->kind == 0)
+				suit_equal = TRUE;
+			suit_greater = TRUE;
+			break;
+		case 1:
+			if (card2->kind != 0)
+				suit_greater = TRUE;
+			if (card2->kind == 1)
+				suit_equal = TRUE;
+			break;
+		case 2:
+			if (card2->kind != 1 &&
+			    card2->kind != 0)
+				suit_greater = TRUE;
+			if (card2->kind == 2)
+				suit_equal = TRUE;
+			break;
+		case 3:
+			if (card2->kind == 3)
+				suit_greater = TRUE;
+				suit_equal = TRUE;
+			break;
+	}
+
+	if (!suit_greater)
+		return (1);
+	else if (!suit_equal) /* suits were not equal and c1 > c2*/
+		return (0);
+	c1_val = atoi(card1->value);
+	c2_val = atoi(card2->value);
+	if (c1_val <= 1 || c1_val > 10)
+	{
+		printf("card 1 is royal\n");
+		if (c2_val <= 1 || c2_val > 10)
+		{
+			printf("card 2 is royal\n");
+			if (card1->value[0] == 'K')
+				return (0);
+			if (card2->value[0] == 'K')
+				return (1);
+			if (card1->value[0] == 'Q')
+				return (0);
+			if (card2->value[0] == 'Q')
+				return (1);
+			if (card1->value[0] == 'J')
+				return (0);
+			if (card2->value[0] == 'J')
+				return (1);
+			if (card2->value[0] == 'A')
+				return (0);
+			return (-1);
+		}
+		if (card1->value[0] != 'A')
+			return (0);
+	}
+	if (c1_val < c2_val)
+		return (1);
+	else if (c2_val > c1_val)
+		return (0);
+	return (-1);
 }
 
 /**
