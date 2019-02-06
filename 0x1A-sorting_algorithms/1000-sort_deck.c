@@ -4,7 +4,7 @@
 void print_deck(const deck_node_t *deck);
 
 void qsort_deck(deck_node_t *left, deck_node_t *right, deck_node_t **deck);
-void lomuto_part(deck_node_t *left, deck_node_t *right, deck_node_t **deck);
+deck_node_t *lomuto_part(deck_node_t *left, deck_node_t *right, deck_node_t **deck);
 int card_comp(const card_t *card1, const card_t *card2);
 void swap_card(deck_node_t *n1, deck_node_t *n2, deck_node_t **deck);
 
@@ -18,7 +18,7 @@ void sort_deck(deck_node_t **deck)
 
 	while (end->next)
 		end = end->next;
-	lomuto_part(*deck, end, deck);
+	qsort_deck(*deck, end, deck);
 }
 
 /**
@@ -29,9 +29,19 @@ void sort_deck(deck_node_t **deck)
  */
 void qsort_deck(deck_node_t *left, deck_node_t *right, deck_node_t **deck)
 {
-	(void)deck;
-	(void)left;
-	(void)right;
+	deck_node_t *first_partition = NULL;
+
+	if (right == left)
+	{
+		printf("partition sorted\n");
+		return;
+	}
+
+	first_partition = lomuto_part(left, right, deck);
+	printf("first_partition got: [%s S:%d]\n", first_partition->card->value, first_partition->card->kind);
+	printf("end of deck got: [%s S:%d]\n", right->card->value, right->card->kind);
+	qsort_deck(left, first_partition->prev, deck);
+	qsort_deck(first_partition->next, right, deck);
 }
 
 /**
@@ -39,23 +49,39 @@ void qsort_deck(deck_node_t *left, deck_node_t *right, deck_node_t **deck)
  * @deck: double pointer to the deck for head modification
  * @left: pointer to left (start) of linked list
  * @right: pointer to right (end) of linked list
+ *
+ * Return: pointer to the new position of the pivot, spiltting partitions
  */
-void lomuto_part(deck_node_t *left, deck_node_t *right, deck_node_t **deck)
+deck_node_t *lomuto_part(deck_node_t *left, deck_node_t *right, deck_node_t **deck)
 {
-	deck_node_t *temp_l, *temp_r, *pivot;
+	deck_node_t *temp_l, *temp_r, *pivot, *tmp_n;
 
 	temp_l = temp_r = left;
 	pivot = right;
-	while(temp_r && temp_l && temp_r != right->next)
+	while (temp_r && temp_l && temp_r != pivot)
 	{
+		tmp_n = temp_r->next;
 		if (!card_comp(temp_r->card, pivot->card))
 		{
 			temp_l = temp_l->next;
 			swap_card(temp_l->prev, temp_r, deck);
+			if (temp_l == temp_r)
+				temp_l = temp_l->next;
 			print_deck(*deck);
 		}
-		temp_r = temp_r->next;
+		if (temp_r != tmp_n)
+			temp_r = tmp_n;
+		else
+			temp_r = temp_r->next;
 	}
+	if (card_comp(temp_l->card, pivot->card))
+	{
+		printf("broke part loop, swapping back pivot\n");
+		swap_card(temp_l, pivot, deck);
+		print_deck(*deck);
+		return (pivot);
+	}
+	return (temp_l);
 }
 
 /**
@@ -129,13 +155,18 @@ int card_comp(const card_t *card1, const card_t *card2)
 				return (0);
 			return (-1);
 		}
-		if (card1->value[0] != 'A')
-			return (0);
 	}
-	if (c1_val < c2_val)
+	if (card1->value[0] == 'A')
 		return (1);
-	else if (c2_val > c1_val)
+	else if (card2->value[0] == 'A')
 		return (0);
+	else if (c2_val <= 1 || c2_val > 10)
+		return (1);
+	
+	if (c1_val > c2_val)
+		return (0);
+	else if (c2_val > c1_val)
+		return (1);
 	return (-1);
 }
 
