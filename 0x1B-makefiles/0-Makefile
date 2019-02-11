@@ -1,0 +1,4 @@
+all : main.c holberton.o
+	cc main.c holberton.o -o holberton
+holberton.o : holberton.c m.h
+	cc -c holberton.c
