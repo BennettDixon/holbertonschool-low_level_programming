@@ -19,7 +19,7 @@ def island_perimeter(grid):
     for r_i, row in enumerate(grid):
         if not isinstance(row, list):
             raise TypeError("island_perimeter must be list of lists")
-        
+
         if next_block is None and len(land_found) == 0:
             for c_i, land in enumerate(row):
                 if (land != 1 and land != 0):
@@ -33,14 +33,11 @@ def island_perimeter(grid):
             break
     furthest_row = 0
     while r_i < len(grid) and next_block is not None:
-        print("r_i:{} grid_len:{} island_p:{}".format(r_i, len(grid), island_p))
         if r_i > furthest_row:
             furthest_row = r_i
         if next_block[1] < r_i:
             r_i = next_block[1]
-            print("reseting row index")
         if next_block[1] != r_i:
-            print("advancing row, not found")
             r_i += 1
             continue
         else:
@@ -51,19 +48,17 @@ def island_perimeter(grid):
                 island_p += block_d['perimeter']
             next_block = block_d['block']
         if next_block is None and r_i + 1 < len(grid) - 1:
-            print("next_block is none")
             for b in land_found:
-                if b[0] == furthest_row:
+                if b[0] == furthest_row - 1:
                     next_block = (1, b[0], b[1])
                     break
         elif next_block is None:
             break
         r_i += 1
     return island_p
-            
+
 
 def get_next_block(grid, row, r_i, c_i, land_found):
-    print("got next called with:[{}, {}]".format(r_i, c_i))
     next_block = None
     block_p = 4
     land_found.append((r_i, c_i))
@@ -75,18 +70,15 @@ def get_next_block(grid, row, r_i, c_i, land_found):
     except:
         raise ValueError("ISLAND IS NOT SURROUNDED BY WATER")
 
-    blocks = [ (t_block, r_i - 1, c_i),
-               (r_block, r_i, c_i + 1),
-               (l_block, r_i, c_i - 1),
-               (b_block, r_i + 1, c_i) ]
+    blocks = [(t_block, r_i - 1, c_i),
+              (r_block, r_i, c_i + 1),
+              (l_block, r_i, c_i - 1),
+              (b_block, r_i + 1, c_i)]
 
     block_p += -1 * (r_block + l_block + t_block + b_block)
     for block in blocks:
         if block[0] == 1:
-            print("block:{} is land".format(block))
             if (block[1], block[2]) not in land_found:
                 next_block = block
                 break
-    print("get_next got: {}".format(next_block))
-    print("got_next perm of cur:{}".format(block_p))
-    return { 'block': next_block, 'perimeter': block_p }
+    return {'block': next_block, 'perimeter': block_p}
