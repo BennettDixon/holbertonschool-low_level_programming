@@ -9,15 +9,15 @@ all : $(OBJ)
 
 .PHONY : clean
 clean :
-	-$(RM) *~ $(NAME)
+	-$(RM) -f *~ $(NAME)
 
 .PHONY : oclean
 oclean :
-	-$(RM) $(OBJ)
+	-$(RM) -f $(OBJ)
 
 .PHONY : fclean
 fclean :
-	-$(RM) ~* $(NAME) $(OBJ)
+	-$(RM) -f ~* $(NAME) $(OBJ)
 
 re :
 	$(CC) -c $(SRC) 
