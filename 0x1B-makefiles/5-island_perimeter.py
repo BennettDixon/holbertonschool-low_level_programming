@@ -7,9 +7,15 @@ module for interview prep, tried more efficient solution but too much
 def island_perimeter(grid):
     """ gets perimeter of island represented as grid
     """
+    if not isinstance(grid, list):
+        return 0
     island_p = 0
     for row_i, row in enumerate(grid):
+        if not isinstance(row, list):
+            return 0
         for col_i, block in enumerate(row):
+            if type(block) is not int:
+                return 0
             if block == 1:
                 island_p += get_block_sum(grid, row_i, col_i)
     return island_p
