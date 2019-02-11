@@ -1,6 +1,6 @@
 CC=gcc
-SRC=holberton.c main.c
-OBJ=holberton.o main.o
+SRC=main.c holberton.c
+OBJ=main.o holberton.o
 NAME=holberton
 
 all : $(OBJ)
