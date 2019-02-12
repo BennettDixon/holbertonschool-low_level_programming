@@ -21,4 +21,4 @@ fclean :
 	-$(RM) -f ~* $(NAME) $(OBJ)
 
 re :
-	$(CC) $(CFLAGS) -c $(SRC) 
+	-$(CC) $(CFLAGS) -c $(SRC) 

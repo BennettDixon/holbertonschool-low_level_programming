@@ -20,4 +20,4 @@ fclean :
 	-$(RM) -f ~* $(NAME) $(OBJ)
 
 re :
-	$(CC) -c $(SRC) 
+	-$(CC) -c $(SRC) 
