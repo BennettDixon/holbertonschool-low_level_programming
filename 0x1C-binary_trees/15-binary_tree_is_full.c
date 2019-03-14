@@ -16,7 +16,7 @@ int binary_tree_is_full(const binary_tree_t *tree)
 	if (!tree)
 		return (0);
 	non_full_nodes = binary_tree_not_full(tree);
-	return ((non_full_nodes) ? 0 : 1);	
+	return ((non_full_nodes) ? 0 : 1);
 }
 
 /**
