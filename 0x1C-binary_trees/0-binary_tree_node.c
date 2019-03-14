@@ -15,6 +15,8 @@ binary_tree_t *binary_tree_node(binary_tree_t *parent, int value)
 	binary_tree_t *new_node = NULL;
 
 	new_node = create_orphan_node(value);
+	if (!new_node)
+		return (NULL);
 	if (parent)
 	{
 		new_node->parent = parent;
@@ -43,6 +45,8 @@ binary_tree_t *create_orphan_node(int value)
 	binary_tree_t *new_node = NULL;
 
 	new_node = malloc(sizeof(binary_tree_t));
+	if (!new_node)
+		return (NULL);
 	new_node->n = value;
 	new_node->parent = NULL;
 	new_node->left = NULL;
