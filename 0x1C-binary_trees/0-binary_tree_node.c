@@ -23,7 +23,10 @@ binary_tree_t *binary_tree_node(binary_tree_t *parent, int value)
 		else if (!parent->right)
 			parent->right = new_node;
 		else
+		{
+			free(new_node);
 			return (NULL);
+		{
 	}
 	return (new_node);
 }
